@@ -123,6 +123,24 @@ optional<bool> UniqueFilter::new_value(bool value, bool is_initial) {
   }
 }
 
+ImmediateDebounceFilter::ImmediateDebounceFilter(uint32_t delay) : delay_(delay) {}
+optional<bool> ImmediateDebounceFilter::new_value(bool value, bool is_initial) {
+  this->last_value_ = value;
+  // Ignore if already running
+  if (this->active_timing_ != 0) {
+    return {};
+  }
+
+  this->set_timeout("Debounce", this->delay_, [this]() { 
+    this->output(*this->last_value_, false);
+    this->active_timing_ = 0;
+    });
+  this->active_timing_ = 1;
+  return value;
+}
+
+float ImmediateDebounceFilter::get_setup_priority() const { return setup_priority::HARDWARE; }
+
 }  // namespace binary_sensor
 
 }  // namespace esphome

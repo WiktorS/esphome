@@ -113,6 +113,20 @@ class UniqueFilter : public Filter {
   optional<bool> last_value_{};
 };
 
+class ImmediateDebounceFilter : public Filter, public Component {
+ public:
+  explicit ImmediateDebounceFilter(uint32_t delay);
+
+  optional<bool> new_value(bool value, bool is_initial) override;
+
+  float get_setup_priority() const override;
+
+ protected:
+  uint32_t delay_;
+  optional<bool> last_value_{};
+  uint8_t active_timing_{0};
+};
+
 }  // namespace binary_sensor
 
 }  // namespace esphome
