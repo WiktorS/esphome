@@ -51,8 +51,8 @@ void HaierClimate::loop() {
 }
 
 void HaierClimate::update() {
-  this->write_array(POLL_REQ, sizeof(POLL_REQ));
-  dump_message_("Poll sent", POLL_REQ, sizeof(POLL_REQ));
+  // this->write_array(POLL_REQ, sizeof(POLL_REQ));
+  // dump_message_("Poll sent", POLL_REQ, sizeof(POLL_REQ));
 }
 
 climate::ClimateTraits HaierClimate::traits() {
@@ -276,7 +276,7 @@ void HaierClimate::control(const climate::ClimateCall &call) {
 }
 
 void HaierClimate::send_data_(const uint8_t *message, uint8_t size) {
-  this->write_array(message, size);
+  // this->write_array(message, size);
 
   dump_message_("Sent message", message, size);
 }
