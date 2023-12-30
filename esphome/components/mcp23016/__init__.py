@@ -39,8 +39,8 @@ async def to_code(config):
 def validate_mode(value):
     if not (value[CONF_INPUT] or value[CONF_OUTPUT]):
         raise cv.Invalid("Mode must be either input or output")
-    if value[CONF_INPUT] and value[CONF_OUTPUT]:
-        raise cv.Invalid("Mode must be either input or output")
+    # if value[CONF_INPUT] and value[CONF_OUTPUT]:
+    #     raise cv.Invalid("Mode must be either input or output")
     return value
 
 
