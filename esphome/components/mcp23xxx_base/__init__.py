@@ -46,8 +46,8 @@ async def register_mcp23xxx(config):
 def validate_mode(value):
     if not (value[CONF_INPUT] or value[CONF_OUTPUT]):
         raise cv.Invalid("Mode must be either input or output")
-    if value[CONF_INPUT] and value[CONF_OUTPUT]:
-        raise cv.Invalid("Mode must be either input or output")
+    # if value[CONF_INPUT] and value[CONF_OUTPUT]:
+    #     raise cv.Invalid("Mode must be either input or output")
     if value[CONF_PULLUP] and not value[CONF_INPUT]:
         raise cv.Invalid("Pullup only available with input")
     return value
